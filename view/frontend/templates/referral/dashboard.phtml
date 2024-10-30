@@ -1,0 +1,37 @@
+<div class="referral-dashboard">
+    <h2><?= __('Gestionar Referidos') ?></h2>
+
+    <button onclick="window.location.href='<?= $block->getAddReferralUrl() ?>'">
+        <?= __('Agregar Referido') ?>
+    </button>
+
+    <table>
+        <thead>
+        <tr>
+            <th><?= __('ID') ?></th>
+            <th><?= __('Nombre') ?></th>
+            <th><?= __('Apellido') ?></th>
+            <th><?= __('Email') ?></th>
+            <th><?= __('Teléfono') ?></th>
+            <th><?= __('Estado') ?></th>
+            <th><?= __('Acciones') ?></th>
+        </tr>
+        </thead>
+        <tbody>
+        <?php foreach ($block->getReferrals() as $referral): ?>
+            <tr>
+                <td><?= $referral->getId() ?></td>
+                <td><?= $referral->getFirstname() ?></td>
+                <td><?= $referral->getLastname() ?></td>
+                <td><?= $referral->getEmail() ?></td>
+                <td><?= $referral->getPhone() ?></td>
+                <td><?= $referral->getStatus() ?></td>
+                <td>
+                    <a href="<?= $block->getEditReferralUrl($referral->getId()) ?>"><?= __('Editar') ?></a> |
+                    <a href="<?= $block->getDeleteReferralUrl($referral->getId()) ?>" onclick="return confirm('¿Seguro que deseas eliminar este referido?')"><?= __('Eliminar') ?></a>
+                </td>
+            </tr>
+        <?php endforeach; ?>
+        </tbody>
+    </table>
+</div>

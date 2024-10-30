@@ -1,0 +1,7 @@
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceBlock name="customer.account.navigation">
+            <block class="Wolfsellers\CustomerReferral\Block\Referral\ReferralDashboard" name="customer_referral_dashboard" template="Wolfsellers_CustomerReferral::referral/dashboard.phtml"/>
+        </referenceBlock>
+    </body>
+</page>

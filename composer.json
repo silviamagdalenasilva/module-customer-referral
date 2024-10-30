@@ -1,0 +1,21 @@
+{
+    "name": "wolfsellers/module-customer-referral",
+    "description": "Módulo de referidos para clientes",
+    "type": "magento2-module",
+    "version": "1.0.0",
+    "license": [
+        "proprietary"
+    ],
+    "require": {
+        "php": "^8.1",
+        "magento/framework": "*"
+    },
+    "autoload": {
+        "files": [
+            "registration.php"
+        ],
+        "psr-4": {
+            "Wolfsellers\\CustomerReferral\\": ""
+        }
+    }
+}
