@@ -34,7 +34,8 @@ bin/magento cache:clean
 <img src="http://imgfz.com/i/KiLxkQy.png" />
 <br/><br/>
 <img src="http://imgfz.com/i/L67UGKc.png" />
-
+<br/>
+<img src="http://imgfz.com/i/G1x76PZ.png" />
 
 ### View admin ###
 #### En Customer -> Referral Management ####
@@ -43,3 +44,4 @@ Por tiempo nose llego a probar completo ver el grid en admin. Pero se dejo la es
 
 <img src="http://imgfz.com/i/sX1Nu3F.png" />
 <br/>
+
