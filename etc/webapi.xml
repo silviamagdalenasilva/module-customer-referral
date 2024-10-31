@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<routes xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Webapi/etc/webapi.xsd">
+    <!-- Create a new referral -->
+    <route url="/V1/referral" method="POST">
+        <service class="WolfSellers\CustomerReferral\Api\ReferralManagementInterface" method="createReferral"/>
+        <resources>
+            <resource ref="WolfSellers_CustomerReferral::manage"/>
+        </resources>
+    </route>
+
+    <!-- Get a referral by ID -->
+    <route url="/V1/referral/:id" method="GET">
+        <service class="WolfSellers\CustomerReferral\Api\ReferralManagementInterface" method="getReferralById"/>
+        <resources>
+            <resource ref="WolfSellers_CustomerReferral::manage"/>
+        </resources>
+    </route>
+
+    <!-- Delete a referral by ID -->
+    <route url="/V1/referral/:id" method="DELETE">
+        <service class="WolfSellers\CustomerReferral\Api\ReferralManagementInterface" method="deleteReferral"/>
+        <resources>
+            <resource ref="WolfSellers_CustomerReferral::manage"/>
+        </resources>
+    </route>
+
+    <!-- Search for referrals -->
+    <route url="/V1/referral/search" method="GET">
+        <service class="WolfSellers\CustomerReferral\Api\ReferralManagementInterface" method="searchReferrals"/>
+        <resources>
+            <resource ref="WolfSellers_CustomerReferral::manage"/>
+        </resources>
+    </route>
+</routes>
+

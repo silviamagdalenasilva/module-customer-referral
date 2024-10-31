@@ -1,12 +1,13 @@
 <?php
-namespace Wolfsellers\CustomerReferral\Controller\Referral;
+declare(strict_types=1);
+namespace WolfSellers\CustomerReferral\Controller\Referral;
 
 use Magento\Framework\App\Action\Action;
 use Magento\Framework\App\Action\Context;
 use Magento\Framework\Controller\ResultFactory;
-use Wolfsellers\CustomerReferral\Model\ReferralFactory;
+use WolfSellers\CustomerReferral\Model\ReferralFactory;
 
-class EditReferral extends Action
+class Delete extends Action
 {
     protected $referralFactory;
 
@@ -20,20 +21,17 @@ class EditReferral extends Action
 
     public function execute()
     {
-        $data = $this->getRequest()->getPostValue();
-        $referralId = $data['entity_id'] ?? null;
+        $referralId = $this->getRequest()->getParam('entity_id');
 
         if ($referralId) {
             $referral = $this->referralFactory->create()->load($referralId);
 
             if ($referral->getId()) {
-                $referral->setData($data);
-
                 try {
-                    $referral->save();
-                    $this->messageManager->addSuccessMessage(__('Referido editado exitosamente.'));
+                    $referral->delete();
+                    $this->messageManager->addSuccessMessage(__('Referido eliminado exitosamente.'));
                 } catch (\Exception $e) {
-                    $this->messageManager->addErrorMessage(__('Error al editar el referido.'));
+                    $this->messageManager->addErrorMessage(__('Error al eliminar el referido.'));
                 }
             } else {
                 $this->messageManager->addErrorMessage(__('Referido no encontrado.'));

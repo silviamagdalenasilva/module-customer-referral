@@ -1,0 +1,25 @@
+# Copyright © Magento, Inc. All rights reserved.
+# See COPYING.txt for license details.
+
+type Referido {
+  entity_id: ID!
+  first_name: String!
+  last_name: String!
+  email: String!
+  phone: String
+  status: String
+  customer_id: ID!
+}
+
+type Query {
+  referidos(filter: ReferidoFilter): ReferidoSearchResult!
+}
+
+input ReferidoFilter {
+  customer_id: FilterEqualType
+}
+
+type ReferidoSearchResult {
+  items: [Referido!]!
+  total_count: Int!
+}

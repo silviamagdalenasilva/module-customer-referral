@@ -1,0 +1,42 @@
+<?php
+/**
+ * @var WolfSellers\CustomerReferral\Block\Referral\Dashboard $block
+ * @var \Magento\Framework\Escaper $escaper
+ * @var \Magento\Framework\View\Helper\SecureHtmlRenderer $secureRenderer
+ */
+$referral = $block->getReferral();
+?>
+<div class="referral-add-form">
+    <h2><?= __('Edit Referral') ?></h2>
+    <form action="<?= $block->escapeUrl($block->getFormAction()) ?>" method="post">
+        <?php foreach ($referral as $ref) : ?>
+            <input type="hidden" name="entity_id" value="<?= $block->escapeHtml($ref->getId()) ?>" />
+            <div>
+                <label><?= __('Nombre') ?>:</label>
+                <input type="text" name="first_name" value="<?= $block->escapeHtml($ref->getData('first_name')) ?>" required />
+            </div>
+            <div>
+                <label><?= __('Apellido') ?>:</label>
+                <input type="text" name="last_name" value="<?= $block->escapeHtml($ref->getData('last_name')) ?>" required />
+            </div>
+            <div>
+                <label><?= __('Email') ?>:</label>
+                <input type="email" name="email" value="<?= $ref->getEmail() ?>" required />
+            </div>
+            <div>
+                <label><?= __('Teléfono') ?>:</label>
+                <input type="text" name="phone" value="<?= $ref->getPhone() ?>" required />
+            </div>
+        <?php endforeach; ?>
+        <div class="actions-toolbar">
+            <div class="primary">
+                <button class="action primary add" type="submit"><?= __('Save') ?></button>
+            </div>
+            <div class="secondary">
+                <a class="action" href="<?= $block->escapeUrl($block->getUrl('customerreferral/referral/index')) ?>">
+                    <span><?= $block->escapeHtml(__('Back')) ?></span>
+                </a>
+            </div>
+        </div>
+    </form>
+</div>

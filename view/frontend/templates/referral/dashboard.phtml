@@ -1,37 +1,63 @@
-<div class="referral-dashboard">
-    <h2><?= __('Gestionar Referidos') ?></h2>
+<?php
+/** @var WolfSellers\CustomerReferral\Block\Referral\Dashboard $block */
+$referrals = $block->getCustomerReferrals();
+?>
 
-    <button onclick="window.location.href='<?= $block->getAddReferralUrl() ?>'">
-        <?= __('Agregar Referido') ?>
-    </button>
+<div class="block block-referrals-list">
+    <div class="block-title"><strong><?= $block->escapeHtml(__('Referrals')) ?></strong></div>
+    <div class="block-content">
+        <?php if ($referrals) : ?>
 
-    <table>
-        <thead>
-        <tr>
-            <th><?= __('ID') ?></th>
-            <th><?= __('Nombre') ?></th>
-            <th><?= __('Apellido') ?></th>
-            <th><?= __('Email') ?></th>
-            <th><?= __('Teléfono') ?></th>
-            <th><?= __('Estado') ?></th>
-            <th><?= __('Acciones') ?></th>
-        </tr>
-        </thead>
-        <tbody>
-        <?php foreach ($block->getReferrals() as $referral): ?>
-            <tr>
-                <td><?= $referral->getId() ?></td>
-                <td><?= $referral->getFirstname() ?></td>
-                <td><?= $referral->getLastname() ?></td>
-                <td><?= $referral->getEmail() ?></td>
-                <td><?= $referral->getPhone() ?></td>
-                <td><?= $referral->getStatus() ?></td>
-                <td>
-                    <a href="<?= $block->getEditReferralUrl($referral->getId()) ?>"><?= __('Editar') ?></a> |
-                    <a href="<?= $block->getDeleteReferralUrl($referral->getId()) ?>" onclick="return confirm('¿Seguro que deseas eliminar este referido?')"><?= __('Eliminar') ?></a>
-                </td>
-            </tr>
-        <?php endforeach; ?>
-        </tbody>
-    </table>
+            <div class="table-wrapper referrals">
+                <table class="data table table-referrals-items" id="referrals-table">
+                    <caption class="table-caption"><?= $block->escapeHtml(__('Referrals')) ?></caption>
+                    <thead>
+                    <tr>
+                        <th scope="col" class="col first_name"><?= $block->escapeHtml(__('ID')) ?></th>
+                        <th scope="col" class="col first_name"><?= $block->escapeHtml(__('First Name')) ?></th>
+                        <th scope="col" class="col last_name"><?= $block->escapeHtml(__('Last Name')) ?></th>
+                        <th scope="col" class="col email"><?= $block->escapeHtml(__('Email')) ?></th>
+                        <th scope="col" class="col phone"><?= $block->escapeHtml(__('Phone')) ?></th>
+                        <th scope="col" class="col status"><?= $block->escapeHtml(__('Status')) ?></th>
+                        <th scope="col" class="col actions"><?= $block->escapeHtml(__('Actions')) ?></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <?php foreach ($referrals as $referral) : ?>
+                        <tr>
+                            <td data-th="<?= $block->escapeHtml(__('ID')) ?>" class="col id_referral"><?= $block->escapeHtml($referral->getId()) ?></td>
+                            <td data-th="<?= $block->escapeHtml(__('First Name')) ?>" class="col first_name"><?= $block->escapeHtml($referral->getFirstName()) ?></td>
+                            <td data-th="<?= $block->escapeHtml(__('Last Name')) ?>" class="col last_name"><?= $block->escapeHtml($referral->getLastName()) ?></td>
+                            <td data-th="<?= $block->escapeHtml(__('Email')) ?>" class="col email"><?= $block->escapeHtml($referral->getEmail()) ?></td>
+                            <td data-th="<?= $block->escapeHtml(__('Phone')) ?>" class="col phone"><?= $block->escapeHtml($referral->getPhone()) ?></td>
+                            <td data-th="<?= $block->escapeHtml(__('Status')) ?>" class="col status"><?= $block->escapeHtml($referral->getStatus()) ?></td>
+                            <td data-th="<?= $block->escapeHtml(__('Actions')) ?>" class="col actions">
+                                <a class="action edit" href="<?= $block->escapeUrl($block->getEditReferralUrl( $referral->getId())) ?>"><span><?= $block->escapeHtml(__('Edit')) ?></span></a>
+                                <a class="action delete" href="#" role="delete-referral" data-referral="<?= $block->escapeHtmlAttr($referral->getId()) ?>"><span><?= $block->escapeHtml(__('Delete')) ?></span></a>
+                            </td>
+                        </tr>
+                    <?php endforeach; ?>
+                    </tbody>
+                </table>
+            </div>
+            <?php if ($block->getChildHtml('pager')) : ?>
+                <div class="referrals-toolbar toolbar bottom"><?= $block->getChildHtml('pager') ?></div>
+            <?php endif ?>
+        <?php else : ?>
+            <p class="empty"><?= $block->escapeHtml(__('You have no referrals at this time.')) ?></p>
+        <?php endif ?>
+    </div>
+</div>
+
+<div class="actions-toolbar">
+    <div class="primary">
+        <a href="<?= $block->escapeUrl($block->getAddReferralUrl()) ?>" class="action primary add">
+            <span><?= $block->escapeHtml(__('Add New Referral')) ?></span>
+        </a>
+    </div>
+    <div class="secondary">
+        <a class="action back" href="<?= $block->escapeUrl($block->getUrl('customer/account')) ?>">
+            <span><?= $block->escapeHtml(__('Back')) ?></span>
+        </a>
+    </div>
 </div>

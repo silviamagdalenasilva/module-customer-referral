@@ -1,0 +1,36 @@
+<?php
+/**
+ * @var WolfSellers\CustomerReferral\Block\Referral\Dashboard $block
+ * @var \Magento\Framework\Escaper $escaper
+ * @var \Magento\Framework\View\Helper\SecureHtmlRenderer $secureRenderer
+ */
+?>
+<div class="referral-add-form">
+    <h2><?= __('Add New Referral') ?></h2>
+    <form action="<?= $block->getFormAction() ?>" method="post">
+        <input type="hidden" name="form_key" value="" />
+
+        <label><?= __('First Name') ?></label>
+        <input type="text" name="first_name" required />
+
+        <label><?= __('Last Name') ?></label>
+        <input type="text" name="last_name" required />
+
+        <label><?= __('Email') ?></label>
+        <input type="email" name="email" required />
+
+        <label><?= __('Phone') ?></label>
+        <input type="text" name="phone" />
+
+        <div class="actions-toolbar">
+            <div class="primary">
+                <button class="action primary add" type="submit"><?= __('Save') ?></button>
+            </div>
+            <div class="secondary">
+                <a class="action" href="<?= $block->escapeUrl($block->getUrl('customerreferral/referral/index')) ?>">
+                    <span><?= $block->escapeHtml(__('Back')) ?></span>
+                </a>
+            </div>
+        </div>
+    </form>
+</div>

@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <type name="WolfSellers\CustomerReferral\Model\ResourceModel\Referral\CollectionFactory">
+        <arguments>
+            <argument name="instanceName" xsi:type="string">WolfSellers\CustomerReferral\Model\ResourceModel\Referral\Collection</argument>
+        </arguments>
+    </type>
+    <type name="WolfSellers\CustomerReferral\Api\ReferralManagementInterface">
+        <arguments>
+            <argument name="referralManagement" xsi:type="object">WolfSellers\CustomerReferral\Model\ReferralManagement</argument>
+        </arguments>
+    </type>
+</config>
